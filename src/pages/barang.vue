@@ -89,36 +89,46 @@
           <template #default>
             <v-card>
               <v-card-title>
-                <span class="headline">{{ item.no }}</span>
+                <span class="headline">{{ item.name }}</span>
               </v-card-title>
               <v-divider />
               <v-card-text>
-                <div class="my-2">
-                  Tanggal Surat Jalan : {{ formatDate(item.date) }}
-                </div>
+                <h3 class="my-2">Detail Barang</h3>
+                <v-row>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="item.name"
+                      hide-details="auto"
+                      label="Nama Barang"
+                      readonly
+                    />
+                  </v-col>
+                  <v-col cols="12" md="6">=
+                    <v-text-field
+                      v-model="item.price"
+                      hide-details="auto"
+                      label="Harga Jual"
+                      readonly
+                    />
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <v-textarea
+                      v-model="item.description"
+                      hide-details="auto"
+                      label="Deskripsi"
+                      readonly
+                    />
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      v-model="item.stock"
+                      hide-details="auto"
+                      label="Stok"
+                      readonly
+                    />
+                  </v-col>
+                </v-row>
 
-                <v-divider class="my-4" />
-                <h3>Detail Surat Jalan</h3>
-                <v-data-table disable-pagination>
-                  <template #default>
-                    <thead>
-                      <tr>
-                        <th class="text-left">No</th>
-                        <th class="text-left">Nama Barang</th>
-                        <th class="text-left">Jumlah</th>
-                        <th class="text-left">Keterangan</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr v-for="(detail, index) in [1, 2, 3, 4, 5]" :key="index">
-                        <td>{{ index + 1 }}</td>
-                        <td>Barang {{ index + 1 }}</td>
-                        <td>{{ formatCurrency(1000000) }}</td>
-                        <td>Barang ini adalah barang yang sangat bagus</td>
-                      </tr>
-                    </tbody>
-                  </template>
-                </v-data-table>
               </v-card-text>
             </v-card>
           </template>
@@ -133,11 +143,8 @@
         </v-dialog>
 
       </template>
-      <template #[`item.date`]="{ item }">
-        {{ formatDate(item.date) }}
-      </template>
-      <template #[`item.purchase_order`]="{ item }">
-        <v-chip color="primary">{{ item.purchase_order }}</v-chip>
+      <template #[`item.price`]="{ item }">
+        {{ formatCurrency(item.price) }}
       </template>
     </v-data-table>
   </div>
@@ -152,42 +159,48 @@
       const menu = ref(false)
       const dialog = ref(false)
       const headers = ref([
-        { title: 'No Surat Jalan', value: 'no' },
-        { title: 'Tanggal Surat Jalan', value: 'date' },
-        { title: 'Purchase Order', value: 'purchase_order' },
-        { title: 'Action', value: 'action', sortable: false },
+        { title: 'No', value: 'no' },
+        { title: 'Nama Barang', value: 'name' },
+        { title: 'Harga Jual', value: 'price' },
+        { title: 'Stok', value: 'stock' },
+        { title: 'Action', value: 'action' },
       ])
 
       const items = ref([
         {
-          no: 'SJ-2021-0001',
-          date: '2021-01-01',
-          purchase_order: 'PO-2021-0001',
-          action: true,
+          no: 1,
+          name: 'Barang 1',
+          price: 1000000,
+          stock: 10,
+          description: 'Barang ini adalah barang yang sangat bagus',
         },
         {
-          no: 'SJ-2021-0002',
-          date: '2021-01-02',
-          purchase_order: 'PO-2021-0002',
-          action: true,
+          no: 2,
+          name: 'Barang 2',
+          price: 2000000,
+          stock: 20,
+          description: 'Barang ini adalah barang yang sangat bagus',
         },
         {
-          no: 'SJ-2021-0003',
-          date: '2021-01-03',
-          purchase_order: 'PO-2021-0003',
-          action: true,
+          no: 3,
+          name: 'Barang 3',
+          price: 3000000,
+          stock: 30,
+          description: 'Barang ini adalah barang yang sangat bagus',
         },
         {
-          no: 'SJ-2021-0004',
-          date: '2021-01-04',
-          purchase_order: 'PO-2021-0004',
-          action: true,
+          no: 4,
+          name: 'Barang 4',
+          price: 4000000,
+          stock: 40,
+          description: 'Barang ini adalah barang yang sangat bagus',
         },
         {
-          no: 'SJ-2021-0005',
-          date: '2021-01-05',
-          purchase_order: 'PO-2021-0005',
-          action: true,
+          no: 5,
+          name: 'Barang 5',
+          price: 5000000,
+          stock: 50,
+          description: 'Barang ini adalah barang yang sangat bagus',
         },
       ])
 
