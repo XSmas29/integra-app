@@ -58,14 +58,12 @@
               <v-card-actions>
                 <v-btn
                   color="primary"
-                  text
                   @click="dialog = false"
                 >
                   Simpan
                 </v-btn>
                 <v-btn
                   color="error"
-                  text
                   @click="dialog = false"
                 >
                   Batal
