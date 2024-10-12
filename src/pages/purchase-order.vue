@@ -64,7 +64,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr v-for="(detail, index) in [1, 2, 3, 4, 5]" :key="index">
+                        <tr v-for="(index) in [1, 2, 3, 4, 5]" :key="index">
                           <td>{{ index + 1 }}</td>
                           <td>Barang {{ index + 1 }}</td>
                           <td>{{ formatCurrency(1000000) }}</td>
